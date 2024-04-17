@@ -12,7 +12,9 @@
     fwrite( $file, $str ."\n");     //ファイルに書き込む
     fclose( $file );                //ファイルを閉じる
 
+
     //タイトル・記事出力
+    
 
     //読み込みたいファイルのpathを記述し、変数に代入
     $filename = 'news.txt';
@@ -22,11 +24,9 @@
 
     //取得したデータをHTMLで表示
     echo $content;
+    
 
-    }   else if($_SERVER["REQUEST_METHOD"]==="GET"){
-    }
-
-
+    }   else {}
 
     //ニュース詳細画面へのリンク
 
