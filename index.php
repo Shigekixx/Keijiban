@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -13,10 +14,10 @@
 
         <form action="./" method="post">
             <label for ="title">タイトル</label>
-            <input type ="text" id =title name ="title">
+            <input type ="text" id ="title" name ="title">
             <br>
             <label for ="news">投稿内容</label>
-            <input type ="text" id =news name ="news">
+            <input type ="text" id ="news" name ="news">
             <br>
             <button type="submit">投稿</button>
         </form>
@@ -37,12 +38,15 @@
     //タイトル・記事保存
     $file = fopen("news.txt", "a"); 
     fwrite( $file, $str ."\n");     
-    fclose( $file );    
+    fclose( $file ); 
     
     if($_SERVER["REQUEST_METHOD"]==="POST"){
         header("location: ./");
         exit;
     }
+
+    
+
     
     //リロードした際にバグらないようにしよう
 
@@ -64,4 +68,3 @@
 
     //ナビゲーションバーのリンク
 ?>
-
