@@ -40,26 +40,18 @@
             header("location:http://localhost:8888/");
             exit;
         }
-        
-    }else { 
-        //タイトル・記事出力
-        //読み込みたいファイルのpathを記述し、変数に代入
-        $filename = 'news.txt';
-
-        //読み込んだファイル内の全てのデータを取得し、変数に代入
-        $content = file_get_contents($filename);
-
-        //取得したデータをHTMLで表示
-        echo $content;
-
     }
 
+    //タイトル・記事出力
+    //読み込みたいファイルのpathを記述し、変数に代入
+    $filename = 'news.txt';
+
+    //読み込んだファイル内の全てのデータを取得し、変数に代入
+    $content = file_get_contents($filename);
 
     //ニュース詳細画面へのリンク
 
     //ナビゲーションバーのリンク
-
-
 
 
 ?>
@@ -132,25 +124,24 @@
             <label for ="news">投稿内容</label>
             <input type ="text" id ="news" name ="news">
             <br>
-            <button id="openButton">投稿</button>
+            <button id="openButton" type="button">投稿</button>
 
 
             <dialog id="modalDialog" class="dialog">
                 <div id="dialog-container">
                     <header>
                     <div>本当に送信しますか？</div>
-                    <button id="closeButton" type="button">
-                        <p>閉じる</p>
-                    </button>
                     </header>
                     <form method="dialog">
                         <button type="submit" value="OK">Ok</button>
-                        <button type="button" value="CANCEL">Cancel</button>
+                        <button id="closeButton" type="button" value="CANCEL">Cancel</button>
                     </form>
                 </div>
             </dialog>
         </form>
-        <h1>投稿一覧</h1>
+
+        <h1>投稿一覧</h1> 
+        <p><?php echo $content;?> </p> 
 
         <script>
             const openButton = document.getElementById('openButton');
@@ -185,7 +176,7 @@
                 Array.from(dialog.getAnimations()).map(animation => animation.finished)
             );
                 
-        </script>   
+        </script>  
     </body>
 
 </html>
