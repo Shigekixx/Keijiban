@@ -4,28 +4,46 @@
         $title = $_POST ["title"];  //タイトルのこと
         $news = $_POST ["news"];  //記事のこと
         $str = $title.$news;    //それぞれをまとめたもの
-    //主キーを保存する
+        //主キーを保存する
 
 
-    //取り出した内容をファイルに保存する
-    $file = fopen("news.txt", "a"); //ファイルを開く
-    fwrite( $file, $str ."\n");     //ファイルに書き込む
-    fclose( $file );                //ファイルを閉じる
+        //取り出した内容をファイルに保存する
+        $file = fopen("news.txt", "a"); //ファイルを開く
+        fwrite( $file, $str ."\n");     //ファイルに書き込む
+        fclose( $file );                //ファイルを閉じる
+
+        //リロードで再度送信はこれで解消
+        header("location:http://localhost:8888/");
+        exit;
 
 
-    //タイトル・記事出力
+        //タイトル・記事出力
+        
+
+        //読み込みたいファイルのpathを記述し、変数に代入
+        $filename = 'news.txt';
+
+        //読み込んだファイル内の全てのデータを取得し、変数に代入
+        $content = file_get_contents($filename);
+
+        //取得したデータをHTMLで表示
+        echo $content;
+
+
     
-
-    //読み込みたいファイルのpathを記述し、変数に代入
-    $filename = 'news.txt';
-
-    //読み込んだファイル内の全てのデータを取得し、変数に代入
-    $content = file_get_contents($filename);
-
-    //取得したデータをHTMLで表示
-    echo $content;
     
-    }   else {}
+    }   else { 
+        //読み込みたいファイルのpathを記述し、変数に代入
+        $filename = 'news.txt';
+
+        //読み込んだファイル内の全てのデータを取得し、変数に代入
+        $content = file_get_contents($filename);
+
+        //取得したデータをHTMLで表示
+        echo $content;
+
+
+    }
 
     //ニュース詳細画面へのリンク
 
