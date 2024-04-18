@@ -8,7 +8,7 @@
 
 
         // 制限値 タイトルを30文字以下にしたい
-        $limit = 30;
+        $limitA= 30;
         // エラーメッセージ用変数
         $errMsg = '';
         // 入力された文字列の長さを取得する
@@ -25,7 +25,7 @@
         } else if(empty($news)){
             $errMsg = '本文が空欄です';
             echo $errMsg;
-        } else if ($limit < $titleLength ){    //タイトルが長すぎる場合
+        } else if ($limitA < $titleLength ){    //タイトルが長すぎる場合
             $errMsg = 'タイトルは30文字以下で表示してください';
             echo $errMsg;
         } else {
