@@ -4,9 +4,9 @@
 
         $title = $_POST ["title"];  //タイトルのこと
         $news = $_POST ["news"];  //記事のこと
-        $postID = $_POST ["postID"]; //主キーもここに含む？
+        $newsid = uniqid(); //IDを自動生成したもの
 
-        $str = $title.$news;    //それぞれをまとめたもの
+        list ($title,$news,$newsid )= $data1;
 
 
         // 制限値 タイトルを30文字以下にしたい
@@ -39,7 +39,7 @@
             // ファイルに書き込む方式も考えるべし
 
 
-            fwrite( $fileA, $str ."\n");     //ファイルに書き込む
+            fwrite( $fileA, $list."\n");     //ファイルに書き込む
             fclose( $fileA );                //ファイルを閉じる
 
             //リロードで再度送信はこれで解消
@@ -133,7 +133,7 @@
             <br>
             <button id="openButton" type="button">投稿</button>
             <!-- 主キーとしてIDを取得したい -->
-            <input type="hidden" id="postId" name="postId" value="" />
+            <!-- <input type="hidden" id="postId" name="postId" value="newsid"/> -->
 
 
             <dialog id="modalDialog" class="dialog">
@@ -186,6 +186,11 @@
                 const waitDialogAnimation = (dialog) => Promise.allSettled(
                 Array.from(dialog.getAnimations()).map(animation => animation.finished)
             );
+
+            // // まず隠しフィールド要素を取得
+            // const hiddenField = document.getElementById('news-id');
+            // // 値をセット
+            // hiddenField.value = 
                 
         </script>  
     </body>

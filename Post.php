@@ -20,7 +20,7 @@
                 //主キーを保存する??
 
                 //取り出した内容をファイルに保存する
-                $fileB= fopen("comment.txt", "a"); //ファイルを開く
+                $fileB= fopen("comment.txt", "a"); //コメント用のファイルを開く
                 fwrite( $fileB, $comment ."\n");     //ファイルに書き込む
                 fclose( $fileB );                //ファイルを閉じる
 
