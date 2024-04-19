@@ -4,6 +4,8 @@
 
         $title = $_POST ["title"];  //タイトルのこと
         $news = $_POST ["news"];  //記事のこと
+        $postID = $_POST ["postID"]; //主キーもここに含む？
+
         $str = $title.$news;    //それぞれをまとめたもの
 
 
@@ -15,7 +17,7 @@
         $titleLength = strlen($title);
 
 
-        //どっちも中身が埋まっていた場合
+        //どっちも中身が埋まっていない場合
         if(empty($title) && empty($news)){
             $errMsg = 'タイトル・本文が空欄です';
             echo $errMsg ;
@@ -32,27 +34,30 @@
             //主キーを保存する??
 
             //取り出した内容をファイルに保存する
-            $file = fopen("news.txt", "a"); //ファイルを開く
-            fwrite( $file, $str ."\n");     //ファイルに書き込む
-            fclose( $file );                //ファイルを閉じる
+            $fileA = fopen("news.txt", "a"); //ファイルを開く
+
+            // ファイルに書き込む方式も考えるべし
+
+
+            fwrite( $fileA, $str ."\n");     //ファイルに書き込む
+            fclose( $fileA );                //ファイルを閉じる
 
             //リロードで再度送信はこれで解消
             header("location:http://localhost:8888/");
             exit;
         }
+    } else {
+
     }
 
     //タイトル・記事出力
     //読み込みたいファイルのpathを記述し、変数に代入
-    $filename = 'news.txt';
+    $filenameA = 'news.txt';
 
     //読み込んだファイル内の全てのデータを取得し、変数に代入
-    $content = file_get_contents($filename);
+    $contentA = file_get_contents($filenameA);
 
-    //ニュース詳細画面へのリンク
-
-    //ナビゲーションバーのリンク
-
+    
 
 ?>
 
@@ -114,7 +119,9 @@
     </head>
 
     <body>
-        <h1>NEWSPOST</h1>
+
+        <!-- //ナビゲーションバーのリンク -->
+        <h1><a href="Post.php"> Laravel_News</a></h1>
         <h2>さぁ、新しいニュースを投稿しよう</h2>
 
         <form action = "./" method = "post" onSubmit="return confirmSubmit()">
@@ -125,6 +132,8 @@
             <input type ="text" id ="news" name ="news">
             <br>
             <button id="openButton" type="button">投稿</button>
+            <!-- 主キーとしてIDを取得したい -->
+            <input type="hidden" id="postId" name="postId" value="" />
 
 
             <dialog id="modalDialog" class="dialog">
@@ -135,13 +144,15 @@
                     <form method="dialog">
                         <button type="submit" value="OK">Ok</button>
                         <button id="closeButton" type="button" value="CANCEL">Cancel</button>
+
                     </form>
                 </div>
             </dialog>
         </form>
 
         <h1>投稿一覧</h1> 
-        <p><?php echo $content;?> </p> 
+        <!-- 投稿一覧での表示の仕方、ニュース詳細画面にリンクするためにどうすべきか -->
+        <p><?php echo $contentA;?> </p> 
 
         <script>
             const openButton = document.getElementById('openButton');
