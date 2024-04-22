@@ -45,7 +45,7 @@
 
     //タイトル・記事出力
     //読み込みたいファイルのpathを記述し、変数に代入
-    $filenameC = 'news.txt';
+    $filenameC = 'news.csv';
 
     //読み込んだファイル内の全てのデータを取得し、変数に代入
     $contentC = file_get_contents($filenameC);

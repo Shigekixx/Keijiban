@@ -5,10 +5,8 @@
         $title = $_POST ["title"];  //タイトルのこと
         $news = $_POST ["news"];  //記事のこと
         $newsid = uniqid(); //IDを自動生成したもの
-
-        list ($title,$news,$newsid )= $data1;
-
-
+        $data1 = array($title,$news,$newsid); //それぞれの要素を配列にまとめたい
+        
         // 制限値 タイトルを30文字以下にしたい
         $limitA= 30;
         // エラーメッセージ用変数
@@ -34,12 +32,12 @@
             //主キーを保存する??
 
             //取り出した内容をファイルに保存する
-            $fileA = fopen("news.txt", "a"); //ファイルを開く
+            $fileA = fopen("news.csv", "a"); //ファイルを開く
 
             // ファイルに書き込む方式も考えるべし
 
-
-            fwrite( $fileA, $list."\n");     //ファイルに書き込む
+            $string = implode(',' , $data1);
+            fwrite( $fileA, $string ."\n");    //ファイルに書き込む
             fclose( $fileA );                //ファイルを閉じる
 
             //リロードで再度送信はこれで解消
@@ -52,7 +50,7 @@
 
     //タイトル・記事出力
     //読み込みたいファイルのpathを記述し、変数に代入
-    $filenameA = 'news.txt';
+    $filenameA = 'news.csv';
 
     //読み込んだファイル内の全てのデータを取得し、変数に代入
     $contentA = file_get_contents($filenameA);
@@ -152,7 +150,7 @@
 
         <h1>投稿一覧</h1> 
         <!-- 投稿一覧での表示の仕方、ニュース詳細画面にリンクするためにどうすべきか -->
-        <p><?php echo $contentA;?> </p> 
+        <p><?php echo $contentA."\n";?> </p> 
 
         <script>
             const openButton = document.getElementById('openButton');
